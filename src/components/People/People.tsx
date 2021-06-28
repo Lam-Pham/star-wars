@@ -7,9 +7,15 @@ import Person from '../Person'
 function People() {
   const [people, setPeople] = React.useState<PersonType[]>([])
 
+  async function getAll (allResponses: any){                             // reduce array of arrays into a singular array of results
+    allResponses = allResponses.map((person: { results: object }) => person.results)
+    return [].concat.apply([], allResponses)
+  }
+
   React.useEffect(() => {
-    fetchJson<{ results: PersonType[] }>('people')
-      .then(peopleResponse => setPeople(peopleResponse.results))
+    fetchJson<{}>('people')
+      .then(peopleResponse => getAll(peopleResponse))
+      .then(result => setPeople(result))
   }, [])
 
   return (
