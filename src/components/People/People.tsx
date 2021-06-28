@@ -32,6 +32,8 @@ function People() {
 
   return (
     <div>
+      <h1>STAR WARS CHARACTERS</h1>
+      <p>Note: Click on a character's name to view species and film appearances!</p>
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -40,16 +42,20 @@ function People() {
           onChange={handleSearchChange}
           name="Search"
         />
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Search"/>
       </form>
 
       <table>
-        <tr>
-          <th>Name</th>
-          <th>Species</th>
-          <th>Film Appearances</th>
-        </tr>
-        {people.map(person => <Person person={person} />)}
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Species</th>
+            <th>Film Appearances</th>
+          </tr>
+        </thead>
+        <tbody>
+          {people.map(person => <Person person={person} />)}
+        </tbody>
       </table>
     </div>
   )

@@ -12,6 +12,8 @@ function Person({ person }: PersonProps) {
   const [films, setFilms] = React.useState<string[]>([])
 
   async function getSpecies (url: string){
+    setSpecies('loading')
+    setFilms(['loading'])
     let speciesUrl = await fetchSingleJson<{}>(url, "species")
       .then(res => res.toString())
 
@@ -38,9 +40,7 @@ function Person({ person }: PersonProps) {
     <tr>
       <td><a onClick={() => getSpecies(person.url)}>{person.name}</a></td>
       <td>{species}</td>
-      <td>
-        {films.map(film => <li>{film}</li>)}
-      </td>
+      <td>{films.map(film => <span>&nbsp; {film} &nbsp;</span>)}</td>
     </tr>
   )
 }
