@@ -10,20 +10,7 @@ function People() {
 
   async function getAll (responses: any){                                                    // reduce array of arrays into a singular array of results
     responses = responses.map((person: { results: object }) => person.results)
-    responses = [].concat.apply([], responses)
-
-      for (let per of responses) {                                
-
-        if (per.species.length == 0){                                                         // human characters don't have species url so we need to add it manually
-            per.species[0] = "https://swapi.dev/api/species/1"
-        }
-
-        let newSpecies = await fetchSingleJson<{}>(per.species[0], "name")
-        per.species = newSpecies
-        console.log(newSpecies)
-      }
-
-    return responses
+    return [].concat.apply([], responses)
   }
 
   React.useEffect(() => {

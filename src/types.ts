@@ -1,5 +1,5 @@
 // TODO: define interface
 export interface PersonType {
   name: string,
-  species: string
+  url: string
 }
