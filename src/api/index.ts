@@ -4,7 +4,7 @@ export async function fetchJson<Response = any>(url: string, init?: RequestInit)
   let nextPage: string = ''
 
   let response = await fetch(
-    `https://swapi.dev/api/${url}/`,
+    `https://swapi.dev/api/${url}`,
     {
       ...init ?? {},
       headers: {
