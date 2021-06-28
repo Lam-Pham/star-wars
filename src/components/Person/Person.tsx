@@ -35,13 +35,13 @@ function Person({ person }: PersonProps) {
 
 
   return (
-    <div>
-      <a onClick={() => getSpecies(person.url)}>{person.name}</a>
-      {species}
-      <ul>
-        {films.map(film => <li>{films}</li>)}
-      </ul>
-    </div>
+    <tr>
+      <td><a onClick={() => getSpecies(person.url)}>{person.name}</a></td>
+      <td>{species}</td>
+      <td>
+        {films.map(film => <li>{film}</li>)}
+      </td>
+    </tr>
   )
 }
 

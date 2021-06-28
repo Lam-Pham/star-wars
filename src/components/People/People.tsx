@@ -43,7 +43,14 @@ function People() {
         <input type="submit" value="Submit"/>
       </form>
 
-      {people.map(person => <Person person={person} />)}
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Species</th>
+          <th>Film Appearances</th>
+        </tr>
+        {people.map(person => <Person person={person} />)}
+      </table>
     </div>
   )
 }
