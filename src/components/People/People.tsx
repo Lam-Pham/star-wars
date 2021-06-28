@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fetchJson } from '../../api'
+import { fetchJson, fetchSingleJson } from '../../api'
 import { PersonType } from '../../types'
 import Person from '../Person'
 
@@ -8,9 +8,22 @@ function People() {
   const [people, setPeople] = React.useState<PersonType[]>([])
   const [search, setSearch] = React.useState<string>('')
 
-  async function getAll (allResponses: any){                                                    // reduce array of arrays into a singular array of results
-    allResponses = allResponses.map((person: { results: object }) => person.results)
-    return [].concat.apply([], allResponses)
+  async function getAll (responses: any){                                                    // reduce array of arrays into a singular array of results
+    responses = responses.map((person: { results: object }) => person.results)
+    responses = [].concat.apply([], responses)
+
+      for (let per of responses) {                                
+
+        if (per.species.length == 0){                                                         // human characters don't have species url so we need to add it manually
+            per.species[0] = "https://swapi.dev/api/species/1"
+        }
+
+        let newSpecies = await fetchSingleJson<{}>(per.species[0], "name")
+        per.species = newSpecies
+        console.log(newSpecies)
+      }
+
+    return responses
   }
 
   React.useEffect(() => {

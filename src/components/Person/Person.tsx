@@ -5,7 +5,12 @@ interface PersonProps {
 }
 
 function Person({ person }: PersonProps) {
-  return <div>{person.name}</div>
+  return (
+    <div>
+      {person.name}
+      {person.species}
+    </div>
+  )
 }
 
 export default Person

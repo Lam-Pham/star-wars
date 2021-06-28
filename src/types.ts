@@ -1,4 +1,5 @@
 // TODO: define interface
 export interface PersonType {
-  name: string
+  name: string,
+  species: string
 }
