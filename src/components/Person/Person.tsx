@@ -35,7 +35,6 @@ function Person({ person }: PersonProps) {
     setFilms(allFilms)
   }
 
-
   return (
     <tr>
       <td><a onClick={() => getSpecies(person.url)}>{person.name}</a></td>
