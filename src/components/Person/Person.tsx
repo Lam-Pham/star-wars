@@ -9,6 +9,7 @@ interface PersonProps {
 
 function Person({ person }: PersonProps) {
   const [species, setSpecies] = React.useState<string>('')
+  const [films, setFilms] = React.useState<string[]>([])
 
   async function getSpecies (url: string){
     let speciesUrl = await fetchSingleJson<{}>(url, "species")
@@ -21,12 +22,25 @@ function Person({ person }: PersonProps) {
     await fetchSingleJson<{}>(speciesUrl, "name")
       .then(res => res.toString())
       .then(res => setSpecies(res))
+
+    let filmsUrl = await fetchSingleJson<[]>(url, "films")
+    
+    let allFilms: string[] = []
+    for (let film of filmsUrl){
+      await fetchSingleJson<string>(film, "title")
+        .then(res => allFilms.push(res))
+    }
+    setFilms(allFilms)
   }
+
 
   return (
     <div>
       <a onClick={() => getSpecies(person.url)}>{person.name}</a>
       {species}
+      <ul>
+        {films.map(film => <li>{films}</li>)}
+      </ul>
     </div>
   )
 }
