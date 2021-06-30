@@ -2,7 +2,7 @@
 
 ### Details
 
-Time taken: ~6 hours
+Time taken: ~6 hours <br/>
 Role: Junior Developer
 
 ### Notes/thoughts!
